@@ -1,0 +1,6 @@
+[
+    { "nombre": "Home", "url": "#Home" },
+    { "nombre": "Servicios", "url": "#servicios" },
+    { "nombre": "Sobre Nosotros", "url": "#sobre" },
+    { "nombre": "Contacto", "url": "#contacto" }
+]

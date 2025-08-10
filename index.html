@@ -12,7 +12,7 @@
             background: #f4f4f4;
         }
         header {
-            background: #28a745;
+            background: #6c5ce7;
             color: #fff;
             padding: 2rem 0;
             text-align: center;
@@ -26,7 +26,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         button {
-            background: #28a745;
+            background: #fd79a8;
             color: #fff;
             border: none;
             padding: 1rem 2rem;
@@ -35,7 +35,7 @@
             font-size: 1rem;
         }
         button:hover {
-            background: #218838;
+            background: #e84393;
         }
         #mensaje {
             margin-top: 1.5rem;
@@ -46,8 +46,11 @@
 </head>
 <body>
     <header>
-    <h1>¡Descubre tu nueva web!</h1>
-    <p>!!!.</p>
+        <nav id="menu">
+            <!-- El menú se cargará aquí -->
+        </nav>
+        <h1>Bienvenido a la Landing Page</h1>
+        <p>Una página de ejemplo creada con HTML y JavaScript</p>
     </header>
     <main>
     <h2>¡Bienvenido!</h2>
@@ -59,6 +62,37 @@
         function mostrarMensaje() {
             document.getElementById('mensaje').textContent = '¡Has descubierto el mensaje oculto! Gracias por visitar.';
         }
+
+        // Cargar menú desde data.json
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                const nav = document.getElementById('menu');
+                const ul = document.createElement('ul');
+                ul.style.listStyle = 'none';
+                ul.style.display = 'flex';
+                ul.style.justifyContent = 'center';
+                ul.style.gap = '2rem';
+                ul.style.padding = '0';
+                ul.style.margin = '0 0 1rem 0';
+                data.forEach(item => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.textContent = item.nombre;
+                    a.href = item.url;
+                    a.style.color = '#fff';
+                    a.style.textDecoration = 'none';
+                    a.style.fontWeight = 'bold';
+                    a.onmouseover = () => a.style.textDecoration = 'underline';
+                    a.onmouseout = () => a.style.textDecoration = 'none';
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                });
+                nav.appendChild(ul);
+            })
+            .catch(err => {
+                document.getElementById('menu').textContent = 'No se pudo cargar el menú.';
+            });
     </script>
 </body>
 </html>
